@@ -12,6 +12,7 @@
 
 #import "AKTextField.h"
 #import "AKDebugger.h"
+#import "AKGenerics.h"
 
 #pragma mark - // DEFINITIONS (Private) //
 
@@ -46,27 +47,27 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategory:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
     
     self = [super initWithFrame:frame];
     if (self)
     {
         [self setup];
     }
-    else if ([AKDebugger printForMethod:METHOD_NAME logType:AKLogTypeWarning methodType:AKMethodTypeSetup]) NSLog(@"[WARNING] Could not initialize self for %s", __PRETTY_FUNCTION__);
+    else [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeWarning methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:[NSString stringWithFormat:@"Could not initialize %@", stringFromVariable(self)]];
     return self;
 }
 
 - (void)awakeFromNib
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategory:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
     
     [self setup];
 }
 
 - (void)dealloc
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategory:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
     
     [self teardown];
 }
@@ -79,7 +80,7 @@
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified customCategory:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeUnspecified customCategories:@[AKD_UI] message:nil];
     
     BOOL canPerformAction = [super canPerformAction:action withSender:sender];
     if (canPerformAction)
@@ -124,7 +125,7 @@
 
 - (void)setup
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategory:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
     
     [self setCopyEnabled:DEFAULT_COPY_ENABLED];
     [self setCutEnabled:DEFAULT_CUT_ENABLED];
@@ -138,7 +139,7 @@
 
 - (void)teardown
 {
-    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategory:nil message:nil];
+    [AKDebugger logMethod:METHOD_NAME logType:AKLogTypeMethodName methodType:AKMethodTypeSetup customCategories:@[AKD_UI] message:nil];
 }
 
 @end
